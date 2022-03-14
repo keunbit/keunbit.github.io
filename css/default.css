@@ -11369,8 +11369,8 @@ figure.highlight .section {
   color: $white-invert;
 }
 .widget .tags .tag:first-child {
-  background: #3273dc;
-  color: #fff;
+  background: #ffdd57;
+  color: rgba(0,0,0,0.7);
 }
 .widget .tags .tag:last-child {
   background: $light-grey;
