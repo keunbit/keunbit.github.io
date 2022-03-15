@@ -10817,6 +10817,10 @@ article.article .article-meta {
   overflow-x: auto;
   margin-bottom: 0.5rem;
 }
+article.article .center_img {
+  display: block;
+  margin: 0 auto;
+}
 article.article .content {
   word-wrap: break-word;
   font-size: 1.1rem;
