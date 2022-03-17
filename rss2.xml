@@ -9,11 +9,11 @@
     <atom:link href="https://keunbit.blog/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description>원활한 커뮤니케이션을 통한 최고의 아웃풋을 만들어낼 수 있는 능력</description>
-    <pubDate>Thu, 17 Mar 2022 17:12:24 GMT</pubDate>
+    <pubDate>Thu, 17 Mar 2022 17:13:31 GMT</pubDate>
     <generator>http://hexo.io/</generator>
     
     <item>
-      <title>01. 변수와 메모리, 그리고 데이터 타입</title>
+      <title>01. 변수와 메모리</title>
       <link>https://keunbit.blog/2022/03/17/python-01/</link>
       <guid>https://keunbit.blog/2022/03/17/python-01/</guid>
       <pubDate>Thu, 17 Mar 2022 10:13:36 GMT</pubDate>
