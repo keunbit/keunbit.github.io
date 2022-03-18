@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>02. 자료형과 연산 - Keunbit 블로그</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="keunbit"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="keunbit"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="안녕하세요 이전 포스팅 애서는 우리가 변수를 선언하면 ‘Everythin is object in Python’ 에 따라 객체를 생성하고 변수는 그것을 가르킨다 라고 정리했었습니다. 그런데 객체(Object)라는 것도 type 이 존재합니다. 이번 포스팅에서는 어떤 type이 있는지, 그리고 간단한 연산에 대해서 얘기해보겠습니다.  기본 자료형 (Data T"><meta property="og:type" content="blog"><meta property="og:title" content="02. 자료형과 연산"><meta property="og:url" content="https://keunbit.blog/2022/03/18/python-02/"><meta property="og:site_name" content="Keunbit 블로그"><meta property="og:description" content="안녕하세요 이전 포스팅 애서는 우리가 변수를 선언하면 ‘Everythin is object in Python’ 에 따라 객체를 생성하고 변수는 그것을 가르킨다 라고 정리했었습니다. 그런데 객체(Object)라는 것도 type 이 존재합니다. 이번 포스팅에서는 어떤 type이 있는지, 그리고 간단한 연산에 대해서 얘기해보겠습니다.  기본 자료형 (Data T"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="https://keunbit.blog/img/og_image.png"><meta property="article:published_time" content="2022-03-18T08:49:53.968Z"><meta property="article:modified_time" content="2022-03-18T10:29:17.429Z"><meta property="article:author" content="Daehwan Kim"><meta property="article:tag" content="Python"><meta property="article:tag" content="Programming Language"><meta property="article:tag" content="Data Type"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://keunbit.blog/2022/03/18/python-02/"},"headline":"02. 자료형과 연산","image":["https://keunbit.blog/img/og_image.png"],"datePublished":"2022-03-18T08:49:53.968Z","dateModified":"2022-03-18T10:29:17.429Z","author":{"@type":"Person","name":"Daehwan Kim"},"publisher":{"@type":"Organization","name":"Keunbit 블로그","logo":{"@type":"ImageObject","url":"https://keunbit.blog/img/logo.svg"}},"description":"안녕하세요 이전 포스팅 애서는 우리가 변수를 선언하면 ‘Everythin is object in Python’ 에 따라 객체를 생성하고 변수는 그것을 가르킨다 라고 정리했었습니다. 그런데 객체(Object)라는 것도 type 이 존재합니다. 이번 포스팅에서는 어떤 type이 있는지, 그리고 간단한 연산에 대해서 얘기해보겠습니다.  기본 자료형 (Data T"}</script><link rel="canonical" href="https://keunbit.blog/2022/03/18/python-02/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.2/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><!--!--><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+          Array
+              .from(document.querySelectorAll('.tab-content'))
+              .forEach($tab => {
+                  $tab.classList.add('is-hidden');
+              });
+          Array
+              .from(document.querySelectorAll('.tabs li'))
+              .forEach($tab => {
+                  $tab.classList.remove('is-active');
+              });
+          const $activeTab = document.querySelector(location.hash);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+          const $tabMenu = document.querySelector(`a[href="${location.hash}"]`);
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"><link rel="alternate" href="/rss2.xml" title="Keunbit 블로그" type="application/rss+xml">
+</head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Keunbit 블로그" height="20"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" style="font-size:16px;font-weight:bold;padding-top:20px;" href="/">Home</a><a class="navbar-item" style="font-size:16px;font-weight:bold;padding-top:20px;" href="/categories">Categories</a><a class="navbar-item" style="font-size:16px;font-weight:bold;padding-top:20px;" href="/tags">Tags</a><a class="navbar-item" style="font-size:16px;font-weight:bold;padding-top:20px;" href="/archives">Archives</a><a class="navbar-item" style="font-size:16px;font-weight:bold;padding-top:20px;" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/keunbit"><i class="fab fa-github"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2022-03-18T08:49:53.968Z" title="2022. 3. 18. 오후 5:49:53">2022-03-18</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2022-03-18T10:29:17.429Z" title="2022. 3. 18. 오후 7:29:17">2022-03-18</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/Programming/">Programming</a><span> / </span><a class="link-muted" href="/categories/Programming/Python/">Python</a></span></div></div><h1 class="title is-3 is-size-4-mobile">02. 자료형과 연산</h1><div class="content"><p>안녕하세요 이전 <a href>포스팅</a> 애서는 우리가 변수를 선언하면 <strong><em>‘Everythin is object in Python’</em></strong> 에 따라 <strong>객체를 생성하고 변수는 그것을 가르킨다</strong> 라고 정리했었습니다. 그런데 객체(Object)라는 것도 <strong><em>type</em></strong> 이 존재합니다. 이번 포스팅에서는 어떤 type이 있는지, 그리고 간단한 연산에 대해서 얘기해보겠습니다.</p>
+<ul>
+<li>기본 자료형 (Data Type) : Integer, Float, String, Boolean</li>
+<li>기본 연산자 : +,-,*,&#x2F;,...</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="숫자형-정수형-Integer-실수형-Float"><a href="#숫자형-정수형-Integer-실수형-Float" class="headerlink" title="숫자형 - 정수형(Integer), 실수형(Float)"></a>숫자형 - 정수형(Integer), 실수형(Float)</h3><blockquote>
+<p>수학에서 정수는 양의 정수, 음의 정수 및 0으로 이루어진 수의 체계이다.<br>수학에서 실수는 주로 실직선 위의 점 또는 십진법 전개로 표현되는 수 체계이다.<br><em>- 위키독스 -</em></p>
+</blockquote>
+<p>네, 위키독스에서 나온 정의를 인용하며 더 설명하진 않겠습니다.</p>
+<figure class="highlight python"><figcaption><span>정수형</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line">a = -<span class="number">12</span></span><br><span class="line">a = <span class="number">0</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(a))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;int&#39;&gt;
+</code></pre>
+<figure class="highlight python"><figcaption><span>실수형</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1.0</span></span><br><span class="line">a = -<span class="number">1.2</span></span><br><span class="line">a = <span class="number">1.23E10</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(a))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;float&#39;&gt;
+</code></pre>
+<p>대신 여기서 앞에 class가 붙은 것에 대해서 잠깐 짚고 넘어가겠습니다.<br>이전 포스팅에서도 그렇고 이번 글의 시작에 파이썬에서는 <strong><em>‘객체를 생성하고 변수는 그것을 가르킨다’</em></strong> 라고 했습니다.<br>즉, <code>tpye(a)</code>를  <code>print()</code> 해서 나온 결과가 <em>‘int Object’가 생성 되었음</em> 또는 <em>‘float Object’가 생성 되었음</em> 그리고 a 라는 변수가 해당 Object를 가르키고 있는 것입니다.<br>그럼 저기 보이는 <code>class</code>가 무엇인지에 대해서는 이후 포스팅에서 <strong><em>class와 모듈</em></strong> 주제로 더 자세히 다뤄보겠습니다. 우선은 <strong><em>객체</em></strong> 라고 해두죠.</p>
+<h3 id="문자형-String"><a href="#문자형-String" class="headerlink" title="문자형(String)"></a>문자형(String)</h3><blockquote>
+<p>문자, 단어 등으로 구성된 문자들의 집합을 의미한다.<br><em>-위키독스-</em></p>
+</blockquote>
+<p>우선 문자열을 만드는 방법에는 3가지가 있습니다. <strong><em>“,’,”””</em></strong> 이 표현들로 감싸주는 것입니다.</p>
+<figure class="highlight python"><figcaption><span>실수형</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;1.0&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;변수 a는 <span class="subst">&#123;a&#125;</span> 이고 타입은 <span class="subst">&#123;<span class="built_in">type</span>(a)&#125;</span> 입니다.&quot;</span>)</span><br><span class="line">a = <span class="string">&#x27;1&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;변수 a는 <span class="subst">&#123;a&#125;</span> 이고 타입은 <span class="subst">&#123;<span class="built_in">type</span>(a)&#125;</span> 입니다.&quot;</span>)</span><br><span class="line">a = <span class="string">&quot;&quot;&quot;Everything is Object in Python&quot;&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;변수 a는 <span class="subst">&#123;a&#125;</span> 이고 타입은 <span class="subst">&#123;<span class="built_in">type</span>(a)&#125;</span> 입니다.&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>변수 a는 1.0 이고 타입은 &lt;class &#39;str&#39;&gt; 입니다.
+변수 a는 1 이고 타입은 &lt;class &#39;str&#39;&gt; 입니다.
+변수 a는 Everything is Object in Python 이고 타입은 &lt;class &#39;str&#39;&gt; 입니다.
+</code></pre>
+<p>위 예시를 봤을 때 <code>1.0</code> 하고 <code>1</code> 은 정수나 실수형 아닌가? 하는 의문이 드실텐데요. 일부로 이런 예시를 넣어봤습니다.<br>즉, 문자열로 정의하는 것은 <strong><em>“,’,”””</em></strong> 이 표현들로 감싸져있느냐가 핵심입니다.</p>
+<p>문자열에 대해서는 여기서 끝내기 아쉬우니, <strong><em>”””</em></strong> 는 언제사용하는지에 대해서 짧게 설명하고 넘어가겠습니다.</p>
+<ol>
+<li>함수에 대한 설명을 작성할 때</li>
+<li>큰 따옴표(“”)와 작은 따옴표(‘’)가 존재하는 텍스트를 다룰 때</li>
+</ol>
+<p>1번은 나중에 함수를 주제로 포스팅할 때 자연스럽게 설명드리게 될 것 같고, 2번에 대해서 간단하게 예시를 보여드리겠습니다.</p>
+ <figure class="highlight python"><figcaption><span>문자형</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&#x27;이 글에는 &quot;큰 따옴표&quot;와 &#x27;</span>작은 따옴표<span class="string">&#x27;가 존재합니다&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>SyntaxError: invalid syntax
+</code></pre>
+<figure class="highlight python"><figcaption><span>문자형</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;이 글에는 &quot;</span>큰 따옴표<span class="string">&quot;와 &#x27;작은 따옴표&#x27;가 존재합니다&quot;</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>SyntaxError: invalid syntax
+</code></pre>
+<figure class="highlight python"><figcaption><span>문자형</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;&quot;&quot;이 글에는 &quot;큰 따옴표&quot;와 &#x27;작은 따옴표&#x27;가 존재합니다&quot;&quot;&quot;</span></span><br><span class="line">a = <span class="string">&#x27;&#x27;&#x27;이 글에는 &quot;큰 따옴표&quot;와 &#x27;작은 따옴표&#x27;가 존재합니다&#x27;&#x27;&#x27;</span> <span class="comment"># &#x27;&#x27;&#x27; 으로도 사용 가능합니다 ^^</span></span><br><span class="line"><span class="built_in">print</span>(a)</span><br></pre></td></tr></table></figure>
+
+<pre><code>이 글에는 &quot;큰 따옴표&quot;와 &#39;작은 따옴표&#39;가 존재합니다
+</code></pre>
+<h3 id="논리형-Boolean"><a href="#논리형-Boolean" class="headerlink" title="논리형(Boolean)"></a>논리형(Boolean)</h3><blockquote>
+<p>참(True)과 거짓(False)을 나타내는 자료형이다. 2가지 값만 가질 수 있다.<br><code>True</code>, <code>False</code>는 파이썬의 예약어로 ture, false가 아닌 첫 문자를 항상 대문자로 정의하여야 한다<br><em>-위키독스-</em></p>
+</blockquote>
+<figure class="highlight python"><figcaption><span>문자형</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="literal">True</span></span><br><span class="line">b = <span class="literal">False</span></span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(a))</span><br><span class="line"><span class="built_in">print</span>(<span class="built_in">type</span>(b))</span><br></pre></td></tr></table></figure>
+
+<pre><code>&lt;class &#39;bool&#39;&gt;
+&lt;class &#39;bool&#39;&gt;
+</code></pre>
+<p>논리 자료형에서는 어떤 케이스에서 ‘True’, ‘False’ 라고 판단하는지를 위주로 알아보겠습니다.</p>
+<figure class="highlight python"><figcaption><span>문자형</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="number">1</span></span><br><span class="line">b = <span class="number">1</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;a = 1, b = 1의 bool은 <span class="subst">&#123;a == b&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;1 &gt; 2의 bool은 <span class="subst">&#123;<span class="number">1</span> &gt; <span class="number">2</span>&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;1 &lt; 2의 bool은 <span class="subst">&#123;<span class="number">1</span> &lt; <span class="number">2</span>&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;-&#x27;</span>*<span class="number">20</span>)</span><br><span class="line">a = <span class="string">&quot;&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;a = &#x27;&#x27;일 때 bool은 <span class="subst">&#123;<span class="built_in">bool</span>(a)&#125;</span>&quot;</span>)</span><br><span class="line">a = <span class="literal">None</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;a = None일 때 bool은 <span class="subst">&#123;<span class="built_in">bool</span>(a)&#125;</span>&quot;</span>)</span><br><span class="line">a = []</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;a = []일 때 bool은 <span class="subst">&#123;<span class="built_in">bool</span>(a)&#125;</span>&quot;</span>)</span><br><span class="line">a = [<span class="number">1</span>]</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;a = [1]일 때 bool은 <span class="subst">&#123;<span class="built_in">bool</span>(a)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>a = 1, b = 1의 bool은 True
+1 &gt; 2의 bool은 False
+1 &lt; 2의 bool은 True
+--------------------
+a = &#39;&#39;일 때 bool은 False
+a = None일 때 bool은 False
+a = []일 때 bool은 False
+a = [1]일 때 bool은 True
+</code></pre>
+<p>자 위 코드 결과에 대해서 짧게 설명을 드려보자면<br>수학기호 <strong>&#x3D;, &gt;, &lt;</strong> 은 설명안해도 잘 아실 것 같으니 넘어가겠습니다.<br>변수에 대해서 “참,거짓”을 판단할 때 요소(attributes)가 없다면 <code>False</code> 결과를 내고있음을  알 수 있습니다.<br>다음 포스팅에서 다루겠지만, <code>[]</code> 를 ‘리스트 자료형’이라고 하는데요.<br><code>a = [1]</code> 처럼 1이라는 정수형 요소가 하나 존재할 때는 <code>True</code>를 뱉지만, <code>a = []</code>처럼 비어있을 경우 <code>False</code>를 내뱉는 것을 알 수 있습니다. </p>
+<p>다음 포스팅은 리스트, 튜플, 딕셔너리 자료형에 대해서 다뤄보겠습니다.</p>
+<p><em>이상으로 이번 포스팅은 마치겠습니다. 추가 의견이나 수정이 필요한 부분이 있다면 언제든지 거침없는 피드백 부탁드립니다! 부족한 글 읽어주셔서 감사합니다!</em></p>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Python/">Python</a><a class="link-muted mr-2" rel="tag" href="/tags/Programming-Language/">Programming Language</a><a class="link-muted mr-2" rel="tag" href="/tags/Data-Type/">Data Type</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=622d7943e2803e0019ddacf6&amp;product=sop" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-end"><a class="article-nav-next level level-item link-muted" href="/2022/03/17/python-01/"><span class="level-item">01. 변수와 메모리</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'https://keunbit.blog/2022/03/18/python-02/';
+            this.page.identifier = '2022/03/18/python-02/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'keunbit' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-4-tablet is-4-desktop is-3-widescreen  order-1"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar" src="/img/avatar.svg" alt="Daehwan Kim"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Daehwan Kim</p><p class="is-size-6 is-block">Biz &amp; Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Seoul, KR</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">4</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">2</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">3</p></a></div></div></nav><div class="level"><a class="level-item button is-success is-rounded is-light" href="/" target="_self" rel="noopener">팔로우</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/keunbit"><i class="fab fa-github"></i></a></div></div></div><!--!--><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">3월 2022</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Data-Type/"><span class="tag">Data Type</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Programming-Language/"><span class="tag">Programming Language</span><span class="tag">4</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">4</span></a></div></div></div></div></div><div class="column-right-shadow is-hidden-widescreen"></div></div><div class="column column-right is-4-tablet is-4-desktop is-3-widescreen is-hidden-touch is-hidden-desktop-only order-3"><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Programming/"><span class="level-start"><span class="level-item">Programming</span></span><span class="level-end"><span class="level-item tag">4</span></span></a><ul><li><a class="level is-mobile" href="/categories/Programming/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">4</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2022-03-18T08:49:53.968Z">2022-03-18</time></p><p class="title"><a href="/2022/03/18/python-02/">02. 자료형과 연산</a></p><p class="categories"><a href="/categories/Programming/">Programming</a> / <a href="/categories/Programming/Python/">Python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2022-03-17T10:13:36.899Z">2022-03-17</time></p><p class="title"><a href="/2022/03/17/python-01/">01. 변수와 메모리</a></p><p class="categories"><a href="/categories/Programming/">Programming</a> / <a href="/categories/Programming/Python/">Python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2022-03-15T14:49:29.129Z">2022-03-15</time></p><p class="title"><a href="/2022/03/15/python-00/">00. 파이썬 개발환경</a></p><p class="categories"><a href="/categories/Programming/">Programming</a> / <a href="/categories/Programming/Python/">Python</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2022-03-14T12:14:43.208Z">2022-03-14</time></p><p class="title"><a href="/2022/03/14/python-intro/">Intro. 왜 파이썬일까?</a></p><p class="categories"><a href="/categories/Programming/">Programming</a> / <a href="/categories/Programming/Python/">Python</a></p></div></article></div></div></div></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Keunbit 블로그" height="28"></a><p class="is-size-7"><span>&copy; 2022 Daehwan Kim</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>
