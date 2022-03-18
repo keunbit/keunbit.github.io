@@ -9,8 +9,16 @@
 
 
     <url>
+        <loc>https://keunbit.blog/2022/03/18/python-03/</loc>
+        <lastmod>2022-03-18T18:31:50.765Z</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.6</priority>
+
+    </url>
+
+    <url>
         <loc>https://keunbit.blog/2022/03/18/python-02/</loc>
-        <lastmod>2022-03-18T11:11:07.645Z</lastmod>
+        <lastmod>2022-03-18T18:31:32.735Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -18,7 +26,7 @@
 
     <url>
         <loc>https://keunbit.blog/2022/03/17/python-01/</loc>
-        <lastmod>2022-03-18T10:34:43.569Z</lastmod>
+        <lastmod>2022-03-18T18:18:40.988Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -26,7 +34,7 @@
 
     <url>
         <loc>https://keunbit.blog/2022/03/15/python-00/</loc>
-        <lastmod>2022-03-18T10:34:19.977Z</lastmod>
+        <lastmod>2022-03-18T18:18:36.888Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
@@ -34,7 +42,7 @@
 
     <url>
         <loc>https://keunbit.blog/2022/03/14/python-intro/</loc>
-        <lastmod>2022-03-17T12:25:31.101Z</lastmod>
+        <lastmod>2022-03-18T12:34:20.879Z</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.6</priority>
 
