@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>04. 제어문 (if, for, while)문 - Keunbit 블로그</title><link rel="manifest" href="/manifest.json"><meta name="application-name" content="keunbit"><meta name="msapplication-TileImage" content="/img/favicon.svg"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="keunbit"><meta name="apple-mobile-web-app-status-bar-style" content="default"><meta name="description" content="안녕하세요 이전 포스팅 애서는 Pyhton 데이터들을 다루는데 있어서 4가지 형태 List, Tuple, Dictionary, Set 에 대해서 다뤄봤는데요. 이번 포스팅에서는 이러한 데이터들을 특정 조건에 따라 변환시키는 작업, 즉 데이터를 직접적으로 제어하는 방법에 대해서 얘기를 나눠보려고 합니다.  if (조건문) while (반복문) for (반복문"><meta property="og:type" content="blog"><meta property="og:title" content="04. 제어문 (if, for, while)문"><meta property="og:url" content="https://keunbit.blog/2022/03/20/programming/python/python-04/"><meta property="og:site_name" content="Keunbit 블로그"><meta property="og:description" content="안녕하세요 이전 포스팅 애서는 Pyhton 데이터들을 다루는데 있어서 4가지 형태 List, Tuple, Dictionary, Set 에 대해서 다뤄봤는데요. 이번 포스팅에서는 이러한 데이터들을 특정 조건에 따라 변환시키는 작업, 즉 데이터를 직접적으로 제어하는 방법에 대해서 얘기를 나눠보려고 합니다.  if (조건문) while (반복문) for (반복문"><meta property="og:locale" content="ko_KR"><meta property="og:image" content="https://keunbit.blog/img/og_image.png"><meta property="article:published_time" content="2022-03-20T04:41:13.148Z"><meta property="article:modified_time" content="2023-01-14T07:16:33.492Z"><meta property="article:author" content="Daehwan Kim"><meta property="article:tag" content="Python"><meta property="article:tag" content="Programming Language"><meta property="twitter:card" content="summary"><meta property="twitter:image:src" content="https://keunbit.blog/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://keunbit.blog/2022/03/20/programming/python/python-04/"},"headline":"04. 제어문 (if, for, while)문","image":["https://keunbit.blog/img/og_image.png"],"datePublished":"2022-03-20T04:41:13.148Z","dateModified":"2023-01-14T07:16:33.492Z","author":{"@type":"Person","name":"Daehwan Kim"},"publisher":{"@type":"Organization","name":"Keunbit 블로그","logo":{"@type":"ImageObject","url":"https://keunbit.blog/img/logo.svg"}},"description":"안녕하세요 이전 포스팅 애서는 Pyhton 데이터들을 다루는데 있어서 4가지 형태 List, Tuple, Dictionary, Set 에 대해서 다뤄봤는데요. 이번 포스팅에서는 이러한 데이터들을 특정 조건에 따라 변환시키는 작업, 즉 데이터를 직접적으로 제어하는 방법에 대해서 얘기를 나눠보려고 합니다.  if (조건문) while (반복문) for (반복문"}</script><link rel="canonical" href="https://keunbit.blog/2022/03/20/programming/python/python-04/"><link rel="alternate" href="https://keunbit.blog/rss2.xml" title="Keunbit 블로그" type="application/atom+xml"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.0.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/css/justifiedGallery.min.css"><script src="https://www.googletagmanager.com/gtag/js?id=G-4WL2KJXDG8" async></script><script>window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+    
+        gtag('config', 'G-4WL2KJXDG8');</script><!--!--><style>.pace{-webkit-pointer-events:none;pointer-events:none;-webkit-user-select:none;-moz-user-select:none;user-select:none}.pace-inactive{display:none}.pace .pace-progress{background:#3273dc;position:fixed;z-index:2000;top:0;right:100%;width:100%;height:2px}</style><script src="https://cdn.jsdelivr.net/npm/pace-js@1.2.4/pace.min.js"></script><!--!--><!--!--><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8997752034819345" crossorigin="anonymous"></script><!-- hexo injector head_end start --><script>
+  (function () {
+      function switchTab() {
+          if (!location.hash) {
+            return;
+          }
+
+          const id = '#' + CSS.escape(location.hash.substring(1));
+          const $tabMenu = document.querySelector(`.tabs a[href="${id}"]`);
+          if (!$tabMenu) {
+            return;
+          }
+
+          const $tabMenuContainer = $tabMenu.parentElement.parentElement;
+          Array.from($tabMenuContainer.children).forEach($menu => $menu.classList.remove('is-active'));
+          Array.from($tabMenuContainer.querySelectorAll('a'))
+              .map($menu => document.getElementById($menu.getAttribute("href").substring(1)))
+              .forEach($content => $content.classList.add('is-hidden'));
+
+          if ($tabMenu) {
+              $tabMenu.parentElement.classList.add('is-active');
+          }
+          const $activeTab = document.querySelector(id);
+          if ($activeTab) {
+              $activeTab.classList.remove('is-hidden');
+          }
+      }
+      switchTab();
+      window.addEventListener('hashchange', switchTab, false);
+  })();
+  </script><!-- hexo injector head_end end --><meta name="generator" content="Hexo 6.1.0"></head><body class="is-2-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Keunbit 블로그" height="20"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" style="font-size:16px;font-weight:bold;padding-top:20px;" href="/">Home</a><a class="navbar-item" style="font-size:16px;font-weight:bold;padding-top:20px;" href="/categories">Categories</a><a class="navbar-item" style="font-size:16px;font-weight:bold;padding-top:20px;" href="/tags">Tags</a><a class="navbar-item" style="font-size:16px;font-weight:bold;padding-top:20px;" href="/archives">Archives</a><a class="navbar-item" style="font-size:16px;font-weight:bold;padding-top:20px;" href="/about">About</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="external nofollow noopener noreferrer" title="Download on GitHub" href="https://github.com/keunbit"><i class="fab fa-github"></i></a><a class="navbar-item is-hidden-tablet catalogue" title="카탈로그" href="javascript:;"><i class="fas fa-list-ul"></i></a><a class="navbar-item search" title="검색" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-9-tablet is-9-desktop is-9-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta is-size-7 is-uppercase level is-mobile"><div class="level-left"><span class="level-item"><time datetime="2022-03-20T04:41:13.148Z" title="3/20/2022, 1:41:13 PM">2022-03-20</time>&nbsp;게시 됨</span><span class="level-item"><time datetime="2023-01-14T07:16:33.492Z" title="1/14/2023, 4:16:33 PM">2023-01-14</time>&nbsp;업데이트 됨</span><span class="level-item"><a class="link-muted" href="/categories/Programming/">Programming</a><span> / </span><a class="link-muted" href="/categories/Programming/Python/">Python</a><span> / </span><a class="link-muted" href="/categories/Programming/Python/Basic/">Basic</a></span></div></div><h1 class="title is-3 is-size-4-mobile">04. 제어문 (if, for, while)문</h1><div class="content"><p>안녕하세요 이전 <a href="https://keunbit.blog/2022/03/18/python-03/">포스팅</a> 애서는 <strong><em>Pyhton</em></strong> 데이터들을 다루는데 있어서 4가지 형태 <strong><em>List, Tuple, Dictionary, Set</em></strong> 에 대해서 다뤄봤는데요. 이번 포스팅에서는 이러한 데이터들을 특정 조건에 따라 변환시키는 작업, 즉 데이터를 직접적으로 제어하는 방법에 대해서 얘기를 나눠보려고 합니다.</p>
+<ul>
+<li>if (조건문)</li>
+<li>while (반복문)</li>
+<li>for (반복문)</li>
+</ul>
+<span id="more"></span>
+
+<h3 id="if문"><a href="#if문" class="headerlink" title="if문"></a><strong>if문</strong></h3><p>굉장히 직관적이지 않나요. 보통은 반복문과 함께 쓰이기 때문에 한 가지 예시만 보고 빠르게 넘어가죠.</p>
+<figure class="highlight python"><figcaption><span>if문 예시</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="number">4</span></span><br><span class="line"><span class="keyword">if</span> num % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;num&#125;</span> - 짝수입니다&#x27;</span>)</span><br><span class="line"><span class="keyword">else</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&#x27;<span class="subst">&#123;num&#125;</span> - 홀수입니다.&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>4은 짝수입니다
+</code></pre>
+<p>조건문 다음에는 항상 <strong>콜론 <code>:</code></strong> 을 붙여서 구분을 해주는 것과 그리고 수행할 코드는 <code>space 4 or 2칸</code>의 <strong>Indent</strong> 를 준다는 것을 <strong><em>반드시</em></strong> 기억하기 바랍니다. <code>num % 2 == 0</code> 에서 <code>%</code>는 <a href="https://keunbit.blog/2022/03/17/python-01/">자료형과 연산</a> 포스팅에서 보셨을 텐데요, 이 식은 짝수(2로 나눴을 때 나머지가 0)를 판별하는 조건식입니다. 여기서 <code>==</code> 연산자는 비교 연산자 중 하나인데요. (<strong>&lt;,&gt;,&lt;&#x3D;,&gt;&#x3D;,&#x3D;&#x3D;,!&#x3D;</strong>) 비교 연산자에 대해서 몇가지 재밌는(?) 예시를 짚고 넘어가겠습니다.</p>
+<figure class="highlight python"><figcaption><span>비교연산자 예시</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">a = <span class="string">&quot;3&quot;</span></span><br><span class="line">b = <span class="string">&quot;4&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;&#x27;<span class="subst">&#123;a&#125;</span>&#x27; &gt; &#x27;<span class="subst">&#123;b&#125;</span>&#x27;의 결과는 <span class="subst">&#123;a &gt; b&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;&#x27;<span class="subst">&#123;a&#125;</span>&#x27; &lt; &#x27;<span class="subst">&#123;b&#125;</span>&#x27;의 결과는 <span class="subst">&#123;a &lt; b&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">a = <span class="string">&quot;가&quot;</span></span><br><span class="line">b = <span class="string">&quot;나&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;&#x27;<span class="subst">&#123;a&#125;</span>&#x27; &gt; &#x27;<span class="subst">&#123;b&#125;</span>&#x27;의 결과는 <span class="subst">&#123;a &gt; b&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;&#x27;<span class="subst">&#123;a&#125;</span>&#x27; &lt; &#x27;<span class="subst">&#123;b&#125;</span>&#x27;의 결과는 <span class="subst">&#123;a &lt; b&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">a = <span class="string">&quot;2022-03-20&quot;</span></span><br><span class="line">b = <span class="string">&quot;2021-03-19&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;&#x27;<span class="subst">&#123;a&#125;</span>&#x27; &gt; &#x27;<span class="subst">&#123;b&#125;</span>&#x27;의 결과는 <span class="subst">&#123;a &gt; b&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;&#x27;<span class="subst">&#123;a&#125;</span>&#x27; &lt; &#x27;<span class="subst">&#123;b&#125;</span>&#x27;의 결과는 <span class="subst">&#123;a &lt; b&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line">a = <span class="string">&quot;2022-23-20&quot;</span></span><br><span class="line">b = <span class="string">&quot;2022-03-19&quot;</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;&#x27;<span class="subst">&#123;a&#125;</span>&#x27; &gt; &#x27;<span class="subst">&#123;b&#125;</span>&#x27;의 결과는 <span class="subst">&#123;a &gt; b&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;&#x27;<span class="subst">&#123;a&#125;</span>&#x27; &lt; &#x27;<span class="subst">&#123;b&#125;</span>&#x27;의 결과는 <span class="subst">&#123;a &lt; b&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>&#39;3&#39; &gt; &#39;4&#39;의 결과는 False
+&#39;3&#39; &lt; &#39;4&#39;의 결과는 True
+&#39;가&#39; &gt; &#39;나&#39;의 결과는 False
+&#39;가&#39; &lt; &#39;나&#39;의 결과는 True
+&#39;2022-03-20&#39; &gt; &#39;2021-03-19&#39;의 결과는 True
+&#39;2022-03-20&#39; &lt; &#39;2021-03-19&#39;의 결과는 False
+&#39;2022-23-20&#39; &gt; &#39;2022-03-19&#39;의 결과는 True
+&#39;2022-23-20&#39; &lt; &#39;2022-03-19&#39;의 결과는 False
+</code></pre>
+<p>얼핏 보면, String 타입의 ‘숫자’, ‘한글’, ‘날짜’ 가 마치 파이썬이 날짜와 숫자의 의미를 인식해서 비교를 하는 것처럼 보이지만, 사실은 그렇지 않습니다. 파이썬은 <strong><em>lexicographicaly</em></strong> 하게 비교 결과를 내뱉고 있는 것입니다(맨 밑 예시). <a target="_blank" rel="external nofollow noopener noreferrer" href="https://stackoverflow.com/questions/31350373/comparing-date-strings-in-python">관련 글</a>은 Reference에 적어두겠습니다.</p>
+<h3 id="while문"><a href="#while문" class="headerlink" title="while문"></a><strong>while문</strong></h3><p>이제 반복문에 대해서 알아보겠습니다. 우선 예시를 하나 들어보죠.</p>
+<figure class="highlight python"><figcaption><span>while문 예시</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">num = <span class="number">0</span></span><br><span class="line"><span class="keyword">while</span> num &lt; <span class="number">5</span>:</span><br><span class="line">    <span class="built_in">print</span>(num)</span><br><span class="line">    num += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>0
+1
+2
+3
+4
+</code></pre>
+<p>여기서 <code>num &lt; 5</code> 는 while의 <strong>조건문</strong> 으로 들어갑니다. 해당 조건문이 참(True)일 때 밑에 식이 동작하는데요. <strong>주의</strong> 하실게 만약 <code>num += 1</code> 줄이 없다면 <strong>무한loop</strong> 에 빠지게 됩니다. 사실 그렇기 때문에 특별히 신경을 써줘야 합니다. (<del>그래서 저는 while 보다는 for문을 주로 사용합니다.</del>) while문은 빠르게 넘어가겠습니다. for문에서 설명하고 싶은게 더 많거든요.</p>
+<h3 id="for문"><a href="#for문" class="headerlink" title="for문"></a><strong>for문</strong></h3><p>for 문의 기본 형태부터 보도록 하겠습니다.</p>
+<figure class="highlight python"><figcaption><span>for문 기본 형태 - 1. 리스트, 튜플, 딕셔너리, 셋</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 변수 <span class="keyword">in</span> (리스트, 튜플, 딕셔너리, 셋):</span><br><span class="line">    <span class="built_in">print</span>(변수)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight python"><figcaption><span>for문 기본 형태 - 2. range() 함수 활용</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> 변수 <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(변수)</span><br></pre></td></tr></table></figure>
+
+<pre><code>0
+1
+2
+3
+4
+</code></pre>
+<p>먼저 for문과 많이 사용되는 range() 함수에 대해서 가볍게 정리해보고 넘어가겠습니다.</p>
+<figure class="highlight python"><figcaption><span>range() parameter(start, stop, step)에 대한 설명</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(start, stop, step)</span><br><span class="line"></span><br><span class="line">- start: 시작할 숫자</span><br><span class="line">    - 생략 가능 (default=<span class="number">0</span>)</span><br><span class="line">    - 정수 입력</span><br><span class="line"></span><br><span class="line">- stop: 이전까지 반복</span><br><span class="line">    - 생략 불가</span><br><span class="line">    - 정수 입력</span><br><span class="line"></span><br><span class="line">- step: 반복시 i에 더할 값 (=보폭을 어떻게 할 것인가?)</span><br><span class="line">    - 생략 가능 (default=<span class="number">0</span>)</span><br><span class="line">    - 정수 입력 (음수 입력시 역순으로 반복)</span><br></pre></td></tr></table></figure>
+
+<p>백문이불여일견! 몇가지 예시를 보고 빠르게 넘어가죠.</p>
+<figure class="highlight python"><figcaption><span>range(start, stop, step) 간단 예시</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>,<span class="number">5</span>,<span class="number">2</span>):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>, <span class="number">0</span>, -<span class="number">1</span>):</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+
+<pre><code>for i in range(5)
+0
+1
+2
+3
+4
+for i in range(1,5)
+1
+2
+3
+4
+for i in range(1,5,2)
+1
+3
+for i in range(5, 0, -1)
+5
+4
+3
+2
+1
+</code></pre>
+<p>그리고 <strong>리스트(List), 튜플(Tuple), 딕셔너리(Dictionary), 셋(set)</strong> 으로 이루어진 데이터를 for문으로 출력했을 때 어떤지 보면서 정리 한 번 하겠습니다.</p>
+<figure class="highlight python"><figcaption><span>리스트 for문</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">list_sample = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> list_sample:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1
+2
+3
+4
+5
+</code></pre>
+<figure class="highlight python"><figcaption><span>튜플 for문</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">tuple_sample = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> tuple_sample:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1
+2
+3
+4
+5
+</code></pre>
+<figure class="highlight python"><figcaption><span>셋 for문</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">set_sample = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> set_sample:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+
+<pre><code>1
+2
+3
+4
+5
+</code></pre>
+<figure class="highlight python"><figcaption><span>딕셔너리 for문</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dict_sample = &#123;<span class="string">&#x27;key1&#x27;</span>: <span class="string">&#x27;value1&#x27;</span>, <span class="string">&#x27;key2&#x27;</span>: <span class="string">&#x27;value2&#x27;</span>, <span class="string">&#x27;key3&#x27;</span>: <span class="string">&#x27;value3&#x27;</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> dict_sample:</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br></pre></td></tr></table></figure>
+
+<pre><code>key1
+key2
+key3
+</code></pre>
+<p><strong>딕셔너리(Dictionary)</strong> 에 대한 for문을 잠시 보겠습니다. Dictionary 타입의 객체는 데이터를 조회하는데 몇가지 기능을 제공합니다. 한 번 보시죠.</p>
+<figure class="highlight python"><figcaption><span>딕셔너리(Dictionary) 함수 - get(), keys(), values(), items()</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">dict_sample.get(<span class="string">&#x27;key1&#x27;</span>) <span class="comment"># key값으로 조회</span></span><br><span class="line">dict_sample.keys() <span class="comment"># key값들만 가져오기</span></span><br><span class="line">dict_sample.values() <span class="comment"># value값들만 가져오기</span></span><br><span class="line">dict_sample.items() <span class="comment"># 한 쌍의 (key, value)를 리스트로 형변환 해서 가져오기</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>dict_sample.get(&#39;key1&#39;)
+-&gt; value1
+dict_sample.keys()
+-&gt; dict_keys([&#39;key1&#39;, &#39;key2&#39;, &#39;key3&#39;])
+dict_sample.values()
+-&gt; dict_values([&#39;value1&#39;, &#39;value2&#39;, &#39;value3&#39;])
+dict_sample.items()
+-&gt; dict_items([(&#39;key1&#39;, &#39;value1&#39;), (&#39;key2&#39;, &#39;value2&#39;), (&#39;key3&#39;, &#39;value3&#39;)])
+</code></pre>
+<p>그러면 딕셔너리의 items() 함수를 사용해서 for문을 통해 key, value 를 동시에 출력해보겠습니다.</p>
+<figure class="highlight python"><figcaption><span>for문 - 딕셔너리 items() 예시</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> k,v <span class="keyword">in</span> dict_sample.items():</span><br><span class="line">    <span class="built_in">print</span>(k, v)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> dict_sample.items():</span><br><span class="line">    <span class="built_in">print</span>(item, item[<span class="number">0</span>], item[<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>key1 value1
+key2 value2
+key3 value3
+(&#39;key1&#39;, &#39;value1&#39;) key1 value1
+(&#39;key2&#39;, &#39;value2&#39;) key2 value2
+(&#39;key3&#39;, &#39;value3&#39;) key3 value3
+</code></pre>
+<p>여기서 <code>for</code> 와 <code>in</code> 사이에 들어가는 <code>변수</code>는 반복할 데이터의 특징에 따라 상황에 맞게 핸들링할 수 있다는 것 기억해두시기 바랍니다. (<em>+ 어떤 변수명을 쓰던지 개발자 마음이니 변수 네이밍은 개발자의 마음입니다.</em>)</p>
+<h3 id="for문-좀-더-활용하기-zip-enumerate-break-continue"><a href="#for문-좀-더-활용하기-zip-enumerate-break-continue" class="headerlink" title="for문 좀 더 활용하기 - zip, enumerate, break, continue"></a><strong>for문 좀 더 활용하기 - zip, enumerate, break, continue</strong></h3><p>자, 그러면 이제 for문에서 몇가지 좀 더 고급(?)기능들을 살펴보겠습니다.</p>
+<h4 id="zip"><a href="#zip" class="headerlink" title="zip"></a><strong>zip</strong></h4><p>우선 zip에 대해서 알아보겠습니다. zip은 여러 2개이상의 데이터들을 동시에 for문에 돌릴 때 사용합니다.</p>
+<figure class="highlight python"><figcaption><span>for문 - zip 예시</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">list_sample = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]</span><br><span class="line">tuple_sample = (<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>)</span><br><span class="line">set_sample = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _l, _t, _s <span class="keyword">in</span> <span class="built_in">zip</span>(list_sample, tuple_sample, set_sample):</span><br><span class="line">    <span class="built_in">print</span>(_l, _t, _s)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> _z <span class="keyword">in</span> <span class="built_in">zip</span>(list_sample, tuple_sample, set_sample):</span><br><span class="line">    <span class="built_in">print</span>(_z, _z[<span class="number">0</span>], _z[<span class="number">1</span>], _z[<span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+
+<pre><code>1 1 1
+2 2 2
+3 3 3
+4 4 4
+(1, 1, 1) 1 1 1
+(2, 2, 2) 2 2 2
+(3, 3, 3) 3 3 3
+(4, 4, 4) 4 4 4
+</code></pre>
+<p>여기서 한 가지. <code>list_sample</code>의 길이는 6인데 출력되는 것은 <strong>길이가 제일 짧은 데이터<code>(set_sample)</code>를 기준으로 반복</strong> 한다는 것입니다.</p>
+<h4 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate"></a><strong>enumerate</strong></h4><p>enumerate의 경우 for문 도는 것에 대해서 자체적으로 index를 생성해주는 기능입니다. 예시 보겠습니다.</p>
+<figure class="highlight python"><figcaption><span>for문 - enumerate 예시</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">list_sample = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx, i <span class="keyword">in</span> <span class="built_in">enumerate</span>(list_sample):</span><br><span class="line">    <span class="built_in">print</span>(idx, i)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> idx, item <span class="keyword">in</span> <span class="built_in">enumerate</span>(dict_sample.items()):</span><br><span class="line">    <span class="built_in">print</span>(idx, item)</span><br></pre></td></tr></table></figure>
+
+<pre><code>0 1
+1 2
+2 3
+3 4
+4 5
+0 (&#39;key1&#39;, &#39;value1&#39;)
+1 (&#39;key2&#39;, &#39;value2&#39;)
+2 (&#39;key3&#39;, &#39;value3&#39;)
+</code></pre>
+<p>나중에 데이터를 핸들링 하실 때 해당 데이터의 <code>index</code> 값을 동시에 활용할 수 있는 것은 굉장히 유용하니 반드시 기억해두시기 바랍니다.</p>
+<h4 id="continue"><a href="#continue" class="headerlink" title="continue"></a><strong>continue</strong></h4><p>반복문을 사용하다보면, 특정 조건에 맞으면 더이상 반복을 중단하고 싶을 때가 생깁니다. 리소스를 절약하는 차원에서 그렇죠. 반복문을 중단하는 방법에는 2가지가 있는데요. 그 두가지의 차이를 한 번 보겠습니다.</p>
+<figure class="highlight python"><figcaption><span>continue 예시</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">if</span> j == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">continue</span></span><br><span class="line">        <span class="built_in">print</span>(<span class="string">&#x27;특정 )</span></span><br><span class="line"><span class="string">    print(f&quot;j=&#123;j&#125;&quot;)</span></span><br></pre></td></tr></table></figure>
+
+<pre><code>j=0
+j=1
+j=3
+j=4
+</code></pre>
+<p>위 코드를 보면 <code>if j == 2</code> 라는 조건일 때 <code>continue</code> 를 작성했습니다. 그 결과 <strong>조건을 충족하면 그 밑에 코드들을 더이상 실행하지 않는다</strong> 는 것 확인할 수 있습니다.</p>
+<h4 id="break"><a href="#break" class="headerlink" title="break"></a><strong>break</strong></h4><figure class="highlight python"><figcaption><span>break 예시</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">5</span>):</span><br><span class="line">    <span class="keyword">if</span> j == <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;j=<span class="subst">&#123;j&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<pre><code>j=0
+j=1
+</code></pre>
+<p><code>break</code>의 경우 <strong>조건을 충족하면 더이상 반복을 하지 않는다</strong> 는 것을 확인할 수 있습니다.</p>
+<h3 id="결론"><a href="#결론" class="headerlink" title="결론"></a>결론</h3><p>이번 포스팅에서는 조건문(if), 반복문(while, for)에 대해서 알아봤는데요. remind 해보겠습니다.</p>
+<ul>
+<li>조건문, 반복문에서 끝은 항상 <strong>콜론(:)</strong> 을 붙여주고 그 뒤에 작동하는 코드는 <strong>space 4 or 2 칸의 Indent</strong> 를 넣어준다</li>
+<li>for문은 리스트, 튜플, 딕셔너리, 셋의 데이터 타입 모두 사용이 가능하다.</li>
+<li>for 와 in 사이의 변수의 이름은 개발자 마음대로 작성하며, 데이터의 형태에 따라 인자를 설정할 수 있다. <em>(ex) for i,v in enumcerate(sample_list):</em></li>
+<li>for문에서는 zip, enumerate, continue, break 등의 몇가지 유용환 활용 기능들이 존재한다.</li>
+</ul>
+<p>여기까지 정리하겠습니다. 꼭 반드시 암기할 필요는 없습니다. <strong>‘이러한 기능이 존재한다’만 기억해두고 필요할 때 구글링해서 코딩하는게 국룰</strong> 이니까요. (<del>물론 제생각…</del>)</p>
+<p>다음 포스팅은 <strong>함수 정의</strong> 에 대해서 얘기해보겠습니다.</p>
+<p><em>이상으로 이번 포스팅은 마치겠습니다. 추가 의견이나 수정이 필요한 부분이 있다면 언제든지 거침없는 피드백 부탁드립니다! 부족한 글 읽어주셔서 감사합니다!</em></p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a><strong>Reference</strong></h3><ul>
+<li><a target="_blank" rel="external nofollow noopener noreferrer" href="https://stackoverflow.com/questions/31350373/comparing-date-strings-in-python">Compare string date in Python</a> <a target="_blank" rel="external nofollow noopener noreferrer" href="https://stackoverflow.com/questions/31350373/comparing-date-strings-in-python">https://stackoverflow.com/questions/31350373/comparing-date-strings-in-python</a></li>
+</ul>
+</div><div class="article-tags is-size-7 mb-4"><span class="mr-2">#</span><a class="link-muted mr-2" rel="tag" href="/tags/Python/">Python</a><a class="link-muted mr-2" rel="tag" href="/tags/Programming-Language/">Programming Language</a></div><div class="sharethis-inline-share-buttons"></div><script src="https://platform-api.sharethis.com/js/sharethis.js#property=622d7943e2803e0019ddacf6&amp;product=sop" defer></script></article></div><!--!--><nav class="post-navigation mt-4 level is-mobile"><div class="level-start"><a class="article-nav-next level level-item link-muted" href="/2022/03/18/programming/python/python-03/"><i class="level-item fas fa-chevron-left"></i><span class="level-item">03. 리스트(List), 튜플(Tuple), 딕셔너리(Dictionary), 셋(Set)</span></a></div><div class="level-end"><a class="article-nav-prev level level-item link-muted" href="/2022/03/22/programming/python/python-05/"><span class="level-item">05. 함수(Function) 다루기</span><i class="level-item fas fa-chevron-right"></i></a></div></nav><div class="card"><div class="card-content"><h3 class="title is-5">댓글</h3><div id="disqus_thread"><noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript></div><script>var disqus_config = function () {
+            this.page.url = 'https://keunbit.blog/2022/03/20/programming/python/python-04/';
+            this.page.identifier = '2022/03/20/programming/python/python-04/';
+        };
+        (function() {
+            var d = document, s = d.createElement('script');  
+            s.src = '//' + 'keunbit' + '.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();</script></div></div></div><div class="column column-left is-3-tablet is-3-desktop is-3-widescreen  order-1 is-sticky"><div class="card widget" data-type="profile"><div class="card-content"><nav class="level"><div class="level-item has-text-centered flex-shrink-1"><div><figure class="image is-128x128 mx-auto mb-2"><img class="avatar is-rounded" src="/img/avatar.svg" alt="Daehwan Kim"></figure><p class="title is-size-4 is-block" style="line-height:inherit;">Daehwan Kim</p><p class="is-size-6 is-block">Biz &amp; Developer</p><p class="is-size-6 is-flex justify-content-center"><i class="fas fa-map-marker-alt mr-1"></i><span>Seoul, KR</span></p></div></div></nav><nav class="level is-mobile"><div class="level-item has-text-centered is-marginless"><div><p class="heading">포스트</p><a href="/archives"><p class="title">12</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">카테고리</p><a href="/categories"><p class="title">5</p></a></div></div><div class="level-item has-text-centered is-marginless"><div><p class="heading">태그</p><a href="/tags"><p class="title">17</p></a></div></div></nav><div class="level"><a class="level-item button is-success is-rounded is-light" href="https://github.com/keunbit" target="_blank" rel="external nofollow noopener noreferrer">팔로우</a></div><div class="level is-mobile is-multiline"><a class="level-item button is-transparent is-marginless" target="_blank" rel="external nofollow noopener noreferrer" title="Github" href="https://github.com/keunbit"><i class="fab fa-github"></i></a></div></div></div><div class="card widget" id="toc" data-type="toc"><div class="card-content"><div class="menu"><h3 class="menu-label">카탈로그</h3><ul class="menu-list"><li><a class="level is-mobile" href="#if문"><span class="level-left"><span class="level-item">1</span><span class="level-item">if문</span></span></a></li><li><a class="level is-mobile" href="#while문"><span class="level-left"><span class="level-item">2</span><span class="level-item">while문</span></span></a></li><li><a class="level is-mobile" href="#for문"><span class="level-left"><span class="level-item">3</span><span class="level-item">for문</span></span></a></li><li><a class="level is-mobile" href="#for문-좀-더-활용하기-zip-enumerate-break-continue"><span class="level-left"><span class="level-item">4</span><span class="level-item">for문 좀 더 활용하기 - zip, enumerate, break, continue</span></span></a><ul class="menu-list"><li><a class="level is-mobile" href="#zip"><span class="level-left"><span class="level-item">4.1</span><span class="level-item">zip</span></span></a></li><li><a class="level is-mobile" href="#enumerate"><span class="level-left"><span class="level-item">4.2</span><span class="level-item">enumerate</span></span></a></li><li><a class="level is-mobile" href="#continue"><span class="level-left"><span class="level-item">4.3</span><span class="level-item">continue</span></span></a></li><li><a class="level is-mobile" href="#break"><span class="level-left"><span class="level-item">4.4</span><span class="level-item">break</span></span></a></li></ul></li><li><a class="level is-mobile" href="#결론"><span class="level-left"><span class="level-item">5</span><span class="level-item">결론</span></span></a></li><li><a class="level is-mobile" href="#Reference"><span class="level-left"><span class="level-item">6</span><span class="level-item">Reference</span></span></a></li></ul></div></div><style>#toc .menu-list > li > a.is-active + .menu-list { display: block; }#toc .menu-list > li > a + .menu-list { display: none; }</style><script src="/js/toc.js" defer></script></div><div class="card widget" data-type="categories"><div class="card-content"><div class="menu"><h3 class="menu-label">카테고리</h3><ul class="menu-list"><li><a class="level is-mobile" href="/categories/Programming/"><span class="level-start"><span class="level-item">Programming</span></span><span class="level-end"><span class="level-item tag">12</span></span></a><ul><li><a class="level is-mobile" href="/categories/Programming/Dart/"><span class="level-start"><span class="level-item">Dart</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li><li><a class="level is-mobile" href="/categories/Programming/Python/"><span class="level-start"><span class="level-item">Python</span></span><span class="level-end"><span class="level-item tag">8</span></span></a><ul><li><a class="level is-mobile" href="/categories/Programming/Python/Basic/"><span class="level-start"><span class="level-item">Basic</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></li><li><a class="level is-mobile" href="/categories/Programming/log/"><span class="level-start"><span class="level-item">log</span></span><span class="level-end"><span class="level-item tag">2</span></span></a></li></ul></li></ul></div></div></div><div class="card widget" data-type="recent-posts"><div class="card-content"><h3 class="menu-label">최근 글</h3><article class="media"><div class="media-content"><p class="date"><time datetime="2023-01-13T16:05:33.038Z">2023-01-14</time></p><p class="title"><a href="/2023/01/14/programming/dart/dart_tutorial-02/">02. Variables</a></p><p class="categories"><a href="/categories/Programming/">Programming</a> / <a href="/categories/Programming/Dart/">Dart</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2023-01-13T06:43:17.434Z">2023-01-13</time></p><p class="title"><a href="/2023/01/13/programming/log/log-02/">Previous/next post with category Filter</a></p><p class="categories"><a href="/categories/Programming/">Programming</a> / <a href="/categories/Programming/log/">log</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2023-01-12T06:12:34.091Z">2023-01-12</time></p><p class="title"><a href="/2023/01/12/programming/dart/dart_tutorial-01/">01. Why Dart?</a></p><p class="categories"><a href="/categories/Programming/">Programming</a> / <a href="/categories/Programming/Dart/">Dart</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2022-04-02T00:18:08.464Z">2022-04-02</time></p><p class="title"><a href="/2022/04/02/programming/python/python-06/">06. 클래스(Class)와 객체지향 다루기</a></p><p class="categories"><a href="/categories/Programming/">Programming</a> / <a href="/categories/Programming/Python/">Python</a> / <a href="/categories/Programming/Python/Basic/">Basic</a></p></div></article><article class="media"><div class="media-content"><p class="date"><time datetime="2022-03-23T12:13:37.984Z">2022-03-23</time></p><p class="title"><a href="/2022/03/23/programming/log/log-01/">Clean Code 작성법</a></p><p class="categories"><a href="/categories/Programming/">Programming</a> / <a href="/categories/Programming/log/">log</a></p></div></article></div></div><div class="card widget" data-type="archives"><div class="card-content"><div class="menu"><h3 class="menu-label">아카이브</h3><ul class="menu-list"><li><a class="level is-mobile" href="/archives/2023/01/"><span class="level-start"><span class="level-item">1월 2023</span></span><span class="level-end"><span class="level-item tag">3</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/04/"><span class="level-start"><span class="level-item">4월 2022</span></span><span class="level-end"><span class="level-item tag">1</span></span></a></li><li><a class="level is-mobile" href="/archives/2022/03/"><span class="level-start"><span class="level-item">3월 2022</span></span><span class="level-end"><span class="level-item tag">8</span></span></a></li></ul></div></div></div><div class="card widget" data-type="tags"><div class="card-content"><div class="menu"><h3 class="menu-label">태그</h3><div class="field is-grouped is-grouped-multiline"><div class="control"><a class="tags has-addons" href="/tags/Application/"><span class="tag">Application</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Blog/"><span class="tag">Blog</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Category/"><span class="tag">Category</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Clean-Code/"><span class="tag">Clean Code</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Custom/"><span class="tag">Custom</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Dart/"><span class="tag">Dart</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Data-Type/"><span class="tag">Data Type</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Flutter/"><span class="tag">Flutter</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Front/"><span class="tag">Front</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Programming-Language/"><span class="tag">Programming Language</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Python/"><span class="tag">Python</span><span class="tag">8</span></a></div><div class="control"><a class="tags has-addons" href="/tags/Web/"><span class="tag">Web</span><span class="tag">2</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo/"><span class="tag">hexo</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/hexo-icarus-theme/"><span class="tag">hexo-icarus-theme</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/icarus/"><span class="tag">icarus</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/post/"><span class="tag">post</span><span class="tag">1</span></a></div><div class="control"><a class="tags has-addons" href="/tags/theme/"><span class="tag">theme</span><span class="tag">1</span></a></div></div></div></div></div></div><!--!--></div></div></section><footer class="footer"><div class="container"><div class="level"><div class="level-start"><a class="footer-logo is-block mb-2" href="/"><img src="/img/logo.svg" alt="Keunbit 블로그" height="28"></a><p class="is-size-7"><span>&copy; 2023 Daehwan Kim</span>  Powered by <a href="https://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a> &amp; <a href="https://github.com/ppoffice/hexo-theme-icarus" target="_blank" rel="external nofollow noopener noreferrer">Icarus</a></p></div><div class="level-end"><div class="field has-addons"><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Creative Commons" href="https://creativecommons.org/"><i class="fab fa-creative-commons"></i></a></p><p class="control"><a class="button is-transparent is-large" target="_blank" rel="external nofollow noopener noreferrer" title="Attribution 4.0 International" href="https://creativecommons.org/licenses/by/4.0/"><i class="fab fa-creative-commons-by"></i></a></p></div></div></div></div></footer><script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/moment@2.22.2/min/moment-with-locales.min.js"></script><script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.4/dist/clipboard.min.js" defer></script><script>moment.locale("ko");</script><script>var IcarusThemeSettings = {
+            article: {
+                highlight: {
+                    clipboard: true,
+                    fold: 'unfolded'
+                }
+            }
+        };</script><script src="/js/column.js"></script><script src="/js/animation.js"></script><a id="back-to-top" title="맨 위로" href="javascript:;"><i class="fas fa-chevron-up"></i></a><script src="/js/back_to_top.js" defer></script><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/cookieconsent@3.1.1/build/cookieconsent.min.js" defer></script><script>window.addEventListener("load", () => {
+      window.cookieconsent.initialise({
+        type: "info",
+        theme: "edgeless",
+        static: false,
+        position: "bottom-left",
+        content: {
+          message: "이 웹 사이트는 귀하의 경험을 향상시키기 위해 Cookie를 사용합니다.",
+          dismiss: "무시",
+          allow: "허용",
+          deny: "거부",
+          link: "더 알아보기",
+          policy: "Cookie 정책",
+          href: "https://www.cookiesandyou.com/",
+        },
+        palette: {
+          popup: {
+            background: "#edeff5",
+            text: "#838391"
+          },
+          button: {
+            background: "#4b81e8"
+          },
+        },
+      });
+    });</script><script src="https://cdn.jsdelivr.net/npm/lightgallery@1.10.0/dist/js/lightgallery.min.js" defer></script><script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.min.js" defer></script><script>window.addEventListener("load", () => {
+            if (typeof $.fn.lightGallery === 'function') {
+                $('.article').lightGallery({ selector: '.gallery-item' });
+            }
+            if (typeof $.fn.justifiedGallery === 'function') {
+                if ($('.justified-gallery > p > .gallery-item').length) {
+                    $('.justified-gallery > p > .gallery-item').unwrap();
+                }
+                $('.justified-gallery').justifiedGallery();
+            }
+        });</script><!--!--><!--!--><!--!--><!--!--><!--!--><script src="/js/main.js" defer></script><div class="searchbox"><div class="searchbox-container"><div class="searchbox-header"><div class="searchbox-input-container"><input class="searchbox-input" type="text" placeholder="입력 하세요..."></div><a class="searchbox-close" href="javascript:;">×</a></div><div class="searchbox-body"></div></div></div><script src="/js/insight.js" defer></script><script>document.addEventListener('DOMContentLoaded', function () {
+            loadInsight({"contentUrl":"/content.json"}, {"hint":"입력 하세요...","untitled":"(제목 없음)","posts":"포스트","pages":"페이지","categories":"카테고리","tags":"태그"});
+        });</script></body></html>
